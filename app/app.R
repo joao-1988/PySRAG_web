@@ -50,7 +50,7 @@ latest_update <- filename %>%
 latest_update_str <- format(latest_update, "%Y/%m/%d")
 
 ## Header ----
-header <- dashboardHeader(title = "SARS monitoring", titleWidth = 600)
+header <- dashboardHeader(title = "SARI monitoring", titleWidth = 600)
 
 ## Sidebar Menu ----
 sidebar <- dashboardSidebar(collapsed = FALSE, 
@@ -71,8 +71,8 @@ selectInput_estado_pontual <- selectInput("select_estado_pontual", h3("State"), 
 sliderInput_idade_pontual <- sliderInput("input_idade_pontual", h3("Age (years)"), min=0,max=120, value = 30, animate = animationOptions(interval = 600, loop = TRUE))
 
 text_home = list(h1("Presentation"),
-                 p("This page is a web application that allows users to interactively explore data related to Severe Acute Respiratory Syndrome (SARS) in Brazil. This web-based interface provides a practical way for users to visualize data without needing deep technical knowledge of Python or the underlying code."),
-                 p("It is supported by a Python package that provides tools for analyzing and processing data related to Severe Acute Respiratory Syndrome (SARS) and other respiratory viruses. It includes functions for data preprocessing, feature engineering, and training Gradient Boosting Models (GBMs) for binary or multiclass classification, see more ", a(href="https://github.com/joao-1988/PySRAG", "PySRAG"), "."),
+                 p("This page is a web application that allows users to interactively explore data related to Severe Acute Respiratory Infection (SARI) in Brazil. This web-based interface provides a practical way for users to visualize data without needing deep technical knowledge of Python or the underlying code."),
+                 p("It is supported by a Python package that provides tools for analyzing and processing data related to Severe Acute Respiratory Infection (SARI) and other respiratory viruses. It includes functions for data preprocessing, feature engineering, and training Gradient Boosting Models (GBMs) for binary or multiclass classification, see more ", a(href="https://github.com/joao-1988/PySRAG", "PySRAG"), "."),
                  h2("Features"),
                  tags$ul(
                    tags$li("Data Visualization: Interactive graphs display processed data, giving insights into the distribution of respiratory viruses."),
