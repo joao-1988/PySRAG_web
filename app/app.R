@@ -38,7 +38,6 @@ feature_name <- read_csv("https://raw.githubusercontent.com/joao-1988/PySRAG_aut
 
 ## Data de atualizacao ----
 # Extraindo as datas
-#https://raw.githubusercontent.com/joao-1988/PySRAG_auto/refs/heads/main/filename.csv
 filename <- read_csv("https://raw.githubusercontent.com/joao-1988/PySRAG_auto/refs/heads/main/filename.csv")
 filename <- filename %>%
   mutate(date = str_extract(filename, "\\d{2}-\\d{2}-\\d{4}"),
@@ -91,6 +90,7 @@ text_home = list(h1("Presentation"),
 )
 
 body <- dashboardBody(
+  # Custom CSS
   tags$style(HTML("
     .irs-bar,
     .irs-bar-edge {
