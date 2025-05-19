@@ -21,24 +21,25 @@ cores <- c('#00CC96', '#19D3F3',  '#FFA15A', '#FECB52', '#B6E880', '#FF97FF', '#
 palette <- setNames(cores, names_map)
 
 ## Prevalencia ----
-df_municipios <- read_csv("https://raw.githubusercontent.com/joao-1988/PySRAG_auto/main/df_municipios.csv") %>%
+df_municipios <- read_csv("https://raw.githubusercontent.com/joao-1988/PySRAG_auto/refs/heads/main/df_municipios.csv") %>%
   # Forçar que a capital seja a primeira a ser exibida e as demais cidades seguirem o tamanho populacional
   mutate(ordenamento = case_when(MUNICIPIO == CAPITAL ~ exp(POPULACAO), .default = POPULACAO) ) %>%
   arrange(ESTADO,-ordenamento)
-df_semanas <- read_csv("https://raw.githubusercontent.com/joao-1988/PySRAG_auto/main/df_semanas.csv")
+df_semanas <- read_csv("https://raw.githubusercontent.com/joao-1988/PySRAG_auto/refs/heads/main/df_semanas.csv")
 # Vetores para seleção da região
 estado <- df_municipios$ESTADO %>% unique %>% sort
 
 ## Prevalencia Pontual ----
-url_booster <- "https://raw.githubusercontent.com/joao-1988/PySRAG_auto/main/booster.txt"
+url_booster <- "https://raw.githubusercontent.com/joao-1988/PySRAG_auto/refs/heads/main/booster.txt"
 download.file(url_booster, destfile = "booster.txt", method = 'curl')
 booster = lgb.load('booster.txt') # So resolver a incompatibilidade gerada ao fazer o download com download.file
-classes <- read_csv("https://raw.githubusercontent.com/joao-1988/PySRAG_auto/main/classes.csv")
-feature_name <- read_csv("https://raw.githubusercontent.com/joao-1988/PySRAG_auto/main/feature_name.csv")
+classes <- read_csv("https://raw.githubusercontent.com/joao-1988/PySRAG_auto/refs/heads/main/classes.csv")
+feature_name <- read_csv("https://raw.githubusercontent.com/joao-1988/PySRAG_auto/refs/heads/main/feature_name.csv")
 
 ## Data de atualizacao ----
 # Extraindo as datas
-filename <- read_csv("https://raw.githubusercontent.com/joao-1988/PySRAG_auto/main/filename.csv")
+#https://raw.githubusercontent.com/joao-1988/PySRAG_auto/refs/heads/main/filename.csv
+filename <- read_csv("https://raw.githubusercontent.com/joao-1988/PySRAG_auto/refs/heads/main/filename.csv")
 filename <- filename %>%
   mutate(date = str_extract(filename, "\\d{2}-\\d{2}-\\d{4}"),
          date = dmy(date)) # Convertendo para formato Date
@@ -90,6 +91,13 @@ text_home = list(h1("Presentation"),
 )
 
 body <- dashboardBody(
+  tags$style(HTML("
+    .irs-bar,
+    .irs-bar-edge {
+      background: transparent !important;
+      border: none !important;
+    }
+  ")),
   ## Itens ----
   tabItems(    
     ## Pagina inicial ----
